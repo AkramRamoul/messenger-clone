@@ -6,7 +6,9 @@ import Input from "@/app/components/inputs/Input";
 import { useCallback, useState } from "react";
 import { FieldValues, SubmitHandler, useForm } from "react-hook-form";
 import { BsGithub, BsGoogle } from "react-icons/bs";
+import { signIn } from "next-auth/react";
 import axios from "axios";
+import toast from "react-hot-toast";
 type Variant = "LOGIN" | "REGISTER";
 
 function AuthForm() {
@@ -35,10 +37,25 @@ function AuthForm() {
   const onSubmit: SubmitHandler<FieldValues> = (data) => {
     setIsloading(true);
     if (variant === "REGISTER") {
-      axios.post("/api/register", data);
+      axios
+        .post("/api/register", data)
+        .catch(() => toast.error("Something went wrong"))
+        .finally(() => setIsloading(false));
     }
     if (variant === "LOGIN") {
-      console.log("axios login");
+      signIn("credentials", {
+        ...data,
+        redirect: false,
+      })
+        .then((callback) => {
+          if (callback?.error) {
+            return toast.error("Invalid credentials");
+          }
+          if (callback?.ok && !callback.error) {
+            return toast.success("Logged in");
+          }
+        })
+        .finally(() => setIsloading(false));
     }
   };
   const socialSignIn = (action: string) => {
