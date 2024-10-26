@@ -60,7 +60,18 @@ function AuthForm() {
   };
   const socialSignIn = (action: string) => {
     setIsloading(true);
-    console.log("social media signin");
+    signIn(action, { redirect: false })
+      .then((callback) => {
+        if (callback?.error) {
+          toast.error("Invalid Credentials");
+        }
+        if (callback?.ok && !callback.error) {
+          toast.success("Logged in");
+        }
+      })
+      .finally(() => {
+        setIsloading(false);
+      });
   };
   return (
     <div className="mt-8 sm:mx-auto sm:w-full sm:max-w-md">
