@@ -25,12 +25,8 @@ function AuthForm() {
   }, [session?.status, router]);
 
   const toggle_Variant = useCallback(() => {
-    if (variant === "LOGIN") {
-      setVariant("REGISTER");
-    } else {
-      setVariant("LOGIN");
-    }
-  }, [variant]);
+    setVariant((prev) => (prev === "LOGIN" ? "REGISTER" : "LOGIN"));
+  }, []);
 
   const {
     register,
