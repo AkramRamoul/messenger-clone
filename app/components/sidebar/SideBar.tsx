@@ -1,17 +1,17 @@
-import React from "react";
-import DesktopSideBar from "./DesktopSideBar";
-import MobileSideBar from "./MobileSideBar";
 import { getCurrentUser } from "@/app/action/getCurrentUser";
+import DesktopSideBar from "./DesktopSideBar";
+import MobileFooter from "./MobileSideBar";
 
-async function SideBar({ children }: { children: React.ReactNode }) {
-  const user = await getCurrentUser();
+async function Sidebar({ children }: { children: React.ReactNode }) {
+  const currentUser = await getCurrentUser();
+
   return (
     <div className="h-full">
-      <DesktopSideBar currentUser={user!} />
-      <MobileSideBar />
+      <DesktopSideBar currentUser={currentUser!} />
+      <MobileFooter />
       <main className="lg:pl-20 h-full">{children}</main>
     </div>
   );
 }
 
-export default SideBar;
+export default Sidebar;

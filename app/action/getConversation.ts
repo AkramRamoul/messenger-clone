@@ -34,7 +34,7 @@ export const getConversations = async () => {
     });
     return conversations;
   } catch (error: unknown) {
-    console.log(error);
+    console.error(error);
     return [];
   }
 };

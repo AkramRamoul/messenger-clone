@@ -4,7 +4,7 @@ import clsx from "clsx";
 
 interface MobileItemProps {
   href: string;
-  icon: React.ElementType;
+  icon: any;
   active?: boolean;
   onClick?: () => void;
 }

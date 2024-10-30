@@ -21,7 +21,7 @@ export async function POST(request: Request) {
     });
     return NextResponse.json(user);
   } catch (error) {
-    console.log(error, "registration error");
+    console.error(error, "registration error");
     return new NextResponse("Inernal Error", { status: 500 });
   }
 }

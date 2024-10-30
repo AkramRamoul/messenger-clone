@@ -10,7 +10,6 @@ interface Props {
 function UserBox({ data }: Props) {
   const [isLoading, setIsLoading] = useState(false);
   const router = useRouter();
-  console.log(data);
   const handleClick = useCallback(() => {
     setIsLoading(true);
 
@@ -19,14 +18,26 @@ function UserBox({ data }: Props) {
         userId: data.id,
       })
       .then((data) => {
-        router.push(`/conversation/${data.data.id}`);
+        router.push(`/conversations/${data.data.id}`);
       })
       .finally(() => setIsLoading(false));
   }, [data, router]);
   return (
     <div
       onClick={handleClick}
-      className="w-full rounded-md transition cursor-pointer relative flex items-center space-x-3 bg-white p-3 hover:bg-neutral-100"
+      className="
+      w-full 
+      relative 
+      flex 
+      items-center 
+      space-x-3 
+      bg-white 
+      p-3 
+      hover:bg-neutral-100
+      rounded-lg
+      transition
+      cursor-pointer
+    "
     >
       <div className="relative inline-block">
         <Avatar>

@@ -14,21 +14,21 @@ const DesktopSideBar: React.FC<DesktopSideBarProps> = ({ currentUser }) => {
   return (
     <div
       className="
-  hidden 
-  lg:fixed 
-  lg:inset-y-0 
-  lg:left-0 
-  lg:z-40 
-  lg:w-20 
-  xl:px-6
-  lg:overflow-y-auto 
-  lg:bg-white 
-  lg:border-r-[1px]
-  lg:pb-4
-  lg:flex
-  lg:flex-col
-  justify-between
-"
+        hidden 
+        lg:fixed 
+        lg:inset-y-0 
+        lg:left-0 
+        lg:z-40 
+        lg:w-20 
+        xl:px-6
+        lg:overflow-y-auto 
+        lg:bg-white 
+        lg:border-r-[1px]
+        lg:pb-4
+        lg:flex
+        lg:flex-col
+        justify-between
+      "
     >
       <nav className="mt-4 flex flex-col justify-between">
         <ul role="list" className="flex flex-col items-center space-y-1">
@@ -49,19 +49,20 @@ const DesktopSideBar: React.FC<DesktopSideBarProps> = ({ currentUser }) => {
           onClick={() => {
             setIsOpen(true);
           }}
-          className="relative cursor-pointer hover:opacity-75"
+          className="cursor-pointer hover:opacity-75 transition"
         >
           <div className="relative inline-block">
             <Avatar>
               <AvatarImage
                 src={
-                  currentUser.image ??
-                  `https://avatar.vercel.sh/${currentUser.name}`
+                  currentUser?.image ??
+                  `https://avatar.vercel.sh/${currentUser?.name ?? "default"}`
                 }
-                alt="user Image"
+                alt="User Image"
               />
-              <AvatarFallback>{currentUser.name}</AvatarFallback>
+              <AvatarFallback>{currentUser?.name || "Guest"}</AvatarFallback>
             </Avatar>
+
             {/* Status Indicator */}
             <span className="absolute top-0 right-0 w-3 h-3 bg-green-500 rounded-lg" />
           </div>

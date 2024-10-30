@@ -1,9 +1,10 @@
 "use client";
-import useConversations from "@/app/hooks/useConversations";
+
 import useRoutes from "@/app/hooks/useRoutes";
 import MobileItem from "./MobileItem";
+import useConversations from "@/app/hooks/useConversations";
 
-function MobileSideBar() {
+const MobileFooter = () => {
   const routes = useRoutes();
   const { isOpen } = useConversations();
 
@@ -37,5 +38,6 @@ function MobileSideBar() {
       ))}
     </div>
   );
-}
-export default MobileSideBar;
+};
+
+export default MobileFooter;

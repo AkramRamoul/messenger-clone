@@ -76,7 +76,7 @@ export const POST = async (request: Request) => {
     });
     return NextResponse.json(newConversation);
   } catch (error: unknown) {
-    console.log(error);
+    console.error(error);
     return new NextResponse("Internal error", { status: 500 });
   }
 };

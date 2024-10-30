@@ -2,7 +2,6 @@
 import { useCallback, useMemo } from "react";
 import { ConversationType } from "../types";
 import { useRouter } from "next/navigation";
-import { Conversation, Message, User } from "prisma/prisma-client";
 import { format } from "date-fns";
 import { useSession } from "next-auth/react";
 import clsx from "clsx";
@@ -74,11 +73,12 @@ function ConversationBox({
         <Avatar>
           <AvatarImage
             src={
-              otherUser.image ?? `https://avatar.vercel.sh/${otherUser.name}`
+              otherUser?.image ??
+              `https://avatar.vercel.sh/${otherUser?.name ?? "default"}`
             }
-            alt="user Image"
+            alt="User Image"
           />
-          <AvatarFallback>{otherUser.name}</AvatarFallback>
+          <AvatarFallback>{otherUser?.name || "Guest"}</AvatarFallback>
         </Avatar>
         {/* Status Indicator */}
         <span className="absolute top-0 right-0 w-3 h-3 bg-green-500 rounded-lg" />
