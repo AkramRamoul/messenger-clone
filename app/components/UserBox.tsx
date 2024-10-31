@@ -1,9 +1,9 @@
 "use client";
-import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
 import { User } from "@prisma/client";
 import axios from "axios";
 import { useRouter } from "next/navigation";
 import React, { useCallback, useState } from "react";
+import Avatar from "./Avatar";
 interface Props {
   data: User;
 }
@@ -39,16 +39,7 @@ function UserBox({ data }: Props) {
       cursor-pointer
     "
     >
-      <div className="relative inline-block">
-        <Avatar>
-          <AvatarImage
-            src={data.image ?? `https://avatar.vercel.sh/${data.name}`}
-            alt="user Image"
-          />
-          <AvatarFallback>{data.name}</AvatarFallback>
-        </Avatar>
-        <span className="absolute top-0 right-0 w-3 h-3 bg-green-500 rounded-lg" />
-      </div>
+      <Avatar user={data} />
       <div className="min-w-0 flex-1">
         <div className="focus:outline-none">
           <div className="flex mb-1 justify-between">

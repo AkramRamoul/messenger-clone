@@ -6,7 +6,7 @@ import { format } from "date-fns";
 import { useSession } from "next-auth/react";
 import clsx from "clsx";
 import useChatterName from "../hooks/useChatterName";
-import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
+import Avatar from "./Avatar";
 
 function ConversationBox({
   data,
@@ -70,18 +70,7 @@ function ConversationBox({
       )}
     >
       <div className="relative inline-block">
-        <Avatar>
-          <AvatarImage
-            src={
-              otherUser?.image ??
-              `https://avatar.vercel.sh/${otherUser?.name ?? "default"}`
-            }
-            alt="User Image"
-          />
-          <AvatarFallback>{otherUser?.name || "Guest"}</AvatarFallback>
-        </Avatar>
-        {/* Status Indicator */}
-        <span className="absolute top-0 right-0 w-3 h-3 bg-green-500 rounded-lg" />
+        <Avatar user={otherUser} />
       </div>
       <div className="min-w-0 flex-1">
         <div className="focus:outline-none">
