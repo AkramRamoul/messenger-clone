@@ -1,7 +1,8 @@
 import React from "react";
+import { MessageType } from "../types";
 
-function Body() {
-  return <div>Body</div>;
+function Body({ intialMessages }: { intialMessages: MessageType[] }) {
+  return <div className="flex-1 overflow-y-auto">Body</div>;
 }
 
 export default Body;

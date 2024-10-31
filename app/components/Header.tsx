@@ -42,7 +42,11 @@ function Header({
           </div>
         </div>
       </div>
-      <HiEllipsisHorizontal />
+      <HiEllipsisHorizontal
+        size={32}
+        onClick={() => {}}
+        className="text-sky-500 cursor pointer hover:text-sky-600 transition"
+      />
     </div>
   );
 }
