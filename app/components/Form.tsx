@@ -5,6 +5,7 @@ import useConversation from "../hooks/useConversations";
 import { FieldValues, SubmitHandler, useForm } from "react-hook-form";
 import axios from "axios";
 import MessageInput from "./inputs/MessageInput";
+import { CldUploadButton, CldUploadWidget } from "next-cloudinary";
 
 function Form() {
   const { conversationId } = useConversation();
@@ -19,32 +20,41 @@ function Form() {
       message: "",
     },
   });
+
   const message = watch("message");
+
   const OnSubmit: SubmitHandler<FieldValues> = (data) => {
-    setValue("message", "", {
-      shouldValidate: true,
-    });
-    axios.post("/api/messages", {
-      ...data,
-      conversationId,
-    });
+    setValue("message", "", { shouldValidate: true });
+    axios.post("/api/messages", { ...data, conversationId });
+  };
+
+  const handleImageUpload = (res: any) => {
+    if (res?.info?.secure_url) {
+      axios.post("/api/messages", {
+        image: res.info.secure_url,
+        conversationId,
+      });
+    } else {
+      console.error("Image upload failed");
+    }
   };
 
   return (
-    <div
-      className="
-        py-4 
-        px-4 
-        bg-white 
-        border-t 
-        flex 
-        items-center 
-        gap-2 
-        lg:gap-4 
-        w-full
-      "
-    >
-      <HiPhoto size={30} className="text-sky-500" />
+    <div className="py-4 px-4 bg-white border-t flex items-center gap-2 lg:gap-4 w-full">
+      <CldUploadWidget
+        uploadPreset="d5empqg9"
+        onSuccess={handleImageUpload}
+        options={{ maxFiles: 1 }}
+      >
+        {({ open }) => {
+          return (
+            <button onClick={() => open()}>
+              <HiPhoto size={28} className="text-sky-500" />
+            </button>
+          );
+        }}
+      </CldUploadWidget>
+
       <form
         className="flex items-center gap-2 lg:gap-4 w-full"
         onSubmit={handleSubmit(OnSubmit)}
@@ -53,7 +63,7 @@ function Form() {
           errors={errors}
           id="message"
           register={register}
-          placeholder="type a message"
+          placeholder="Type a message or upload an image"
           required
         />
         <button
