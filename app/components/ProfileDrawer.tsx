@@ -1,6 +1,6 @@
 "use client";
 import { Conversation, User } from "@prisma/client";
-import { Fragment, useMemo } from "react";
+import { Fragment, useCallback, useMemo } from "react";
 import useChatterName from "../hooks/useChatterName";
 import { format } from "date-fns/format";
 import { Dialog, DialogPanel, Transition } from "@headlessui/react";
@@ -17,6 +17,10 @@ import {
 import { IoClose, IoTrash } from "react-icons/io5";
 import Avatar from "./Avatar";
 import { Button } from "@/components/ui/button";
+import axios from "axios";
+import useConversation from "../hooks/useConversations";
+import { useRouter } from "next/navigation";
+import toast from "react-hot-toast";
 
 interface ProfileDrawerProps {
   isOpen: boolean;
@@ -43,9 +47,17 @@ function ProfileDrawer({ isOpen, onClose, data }: ProfileDrawerProps) {
     return "Active";
   }, [data]);
 
-  const handleDelete = () => {
-    console.log("deleted");
-  };
+  const router = useRouter();
+  const { conversationId } = useConversation();
+  const handleDelete = useCallback(() => {
+    axios
+      .delete(`/api/conversations/${conversationId}`)
+      .then(() => {
+        router.push("/conversations");
+        router.refresh();
+      })
+      .catch(() => toast.error("something went wrong !"));
+  }, [conversationId, router]);
 
   return (
     <Transition show={isOpen} as={Fragment}>
@@ -117,8 +129,8 @@ function ProfileDrawer({ isOpen, onClose, data }: ProfileDrawerProps) {
                                 </DialogTitle>
                                 <DialogDescription>
                                   This action cannot be undone. This will
-                                  permanently delete your Conversation and
-                                  remove your data from our servers.
+                                  permanently delete this Conversation and
+                                  remove it&apos;s data from our servers.
                                 </DialogDescription>
                               </DialogHeader>
                               <DialogFooter>
@@ -127,7 +139,7 @@ function ProfileDrawer({ isOpen, onClose, data }: ProfileDrawerProps) {
                                     Close
                                   </Button>
                                 </DialogClose>
-                                <DialogClose>
+                                <DialogClose asChild>
                                   <Button
                                     type="button"
                                     variant="destructive"
