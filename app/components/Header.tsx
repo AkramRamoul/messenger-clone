@@ -2,7 +2,7 @@
 
 import { Conversation, User } from "@prisma/client";
 import useChatterName from "../hooks/useChatterName";
-import { Profiler, useMemo, useState } from "react";
+import { useMemo, useState } from "react";
 import Link from "next/link";
 import { HiChevronLeft, HiEllipsisHorizontal } from "react-icons/hi2";
 import Avatar from "./Avatar";
@@ -52,7 +52,9 @@ function Header({
         </div>
         <HiEllipsisHorizontal
           size={32}
-          onClick={() => {}}
+          onClick={() => {
+            setIsOpen(true);
+          }}
           className="text-sky-500 cursor pointer hover:text-sky-600 transition"
         />
       </div>
