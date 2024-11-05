@@ -5,7 +5,7 @@ import useConversation from "../hooks/useConversations";
 import { FieldValues, SubmitHandler, useForm } from "react-hook-form";
 import axios from "axios";
 import MessageInput from "./inputs/MessageInput";
-import { CldUploadButton, CldUploadWidget } from "next-cloudinary";
+import { CldUploadWidget } from "next-cloudinary";
 
 function Form() {
   const { conversationId } = useConversation();
@@ -27,6 +27,7 @@ function Form() {
     setValue("message", "", { shouldValidate: true });
     axios.post("/api/messages", { ...data, conversationId });
   };
+  /* eslint-disable  @typescript-eslint/no-explicit-any */
 
   const handleImageUpload = (res: any) => {
     if (res?.info?.secure_url) {

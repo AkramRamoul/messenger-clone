@@ -3,16 +3,8 @@ import useRoutes from "@/app/hooks/useRoutes";
 import { useState } from "react";
 import DesktopItem from "./DesktopItem";
 import { User } from "@prisma/client";
-import { Button } from "@/components/ui/button";
 
-import {
-  DropdownMenu,
-  DropdownMenuContent,
-  DropdownMenuLabel,
-  DropdownMenuSeparator,
-  DropdownMenuTrigger,
-} from "@/components/ui/dropdown-menu";
-import Avatar from "../Avatar";
+import { DrawerDialogDemo } from "../DrawerDialogue";
 
 interface DesktopSideBarProps {
   currentUser: User;
@@ -61,29 +53,7 @@ const DesktopSideBar: React.FC<DesktopSideBarProps> = ({ currentUser }) => {
           className="cursor-pointer hover:opacity-75 transition"
         >
           <div className="relative inline-block">
-            <DropdownMenu>
-              <DropdownMenuTrigger asChild>
-                <Button
-                  variant="ghost"
-                  className="relative h-10 w-10 rounded-full"
-                >
-                  <Avatar user={currentUser} />
-                </Button>
-              </DropdownMenuTrigger>
-              <DropdownMenuContent className="w-56" align="end" forceMount>
-                <DropdownMenuLabel className="font-normal">
-                  <div className="flex flex-col space-y-1">
-                    <p className="text-sm font-medium leading-none">
-                      {currentUser?.name}
-                    </p>
-                    <p className="text-xs leading-none text-muted-foreground">
-                      {currentUser?.email}
-                    </p>
-                  </div>
-                </DropdownMenuLabel>
-                <DropdownMenuSeparator />
-              </DropdownMenuContent>
-            </DropdownMenu>
+            <DrawerDialogDemo currentUser={currentUser} />
           </div>
         </div>
       </nav>
