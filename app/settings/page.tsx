@@ -8,10 +8,11 @@ export default async function SettingsPage() {
     return null;
   }
   return (
-    <div className="flex items-center justify-center mt-12">
-      <Card className="w-full max-w-md h-full">
-        <SettingsForm currentUser={currentUser} />
-      </Card>
-    </div>
+    <Card
+      className="container mx-auto sm:px-6 
+        lg:px-8 lg:py-6  max-w-md h-full flex justify-center w-full flex-col "
+    >
+      <SettingsForm currentUser={currentUser} />
+    </Card>
   );
 }

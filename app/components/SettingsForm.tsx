@@ -82,10 +82,11 @@ export const SettingsForm = ({ currentUser }: SettingsFormProps) => {
               register={register}
               required
             />
-            <Label htmlFor="image" className="mt-8">
-              Photo
-            </Label>
-            <div className="mt-2 flex items-center gap-3">
+
+            <div className="mt-2 flex items-center flex-col gap-3">
+              <Label htmlFor="image" className="mt-8">
+                Photo
+              </Label>
               <Image
                 alt="User Image"
                 height={64}
