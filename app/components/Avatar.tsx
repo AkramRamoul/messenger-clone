@@ -24,7 +24,8 @@ const Avatar: React.FC<AvatarProps> = ({ user }) => {
       "
       >
         <Image
-          fill
+          width={100}
+          height={100}
           src={user?.image || `https://avatar.vercel.sh/${user?.name}`}
           alt="Avatar"
         />
