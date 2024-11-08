@@ -6,8 +6,8 @@ import { format } from "date-fns";
 import { useSession } from "next-auth/react";
 import clsx from "clsx";
 import useChatterName from "../hooks/useChatterName";
-import Avatar from "./Avatar";
-import AvatarGroup from "./AvatarGroup";
+import Avatar from "./Avatars/Avatar";
+import AvatarGroup from "./Avatars/AvatarGroup";
 
 function ConversationBox({
   data,

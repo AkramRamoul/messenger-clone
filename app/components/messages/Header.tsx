@@ -5,9 +5,9 @@ import useChatterName from "../hooks/useChatterName";
 import { useMemo, useState } from "react";
 import Link from "next/link";
 import { HiChevronLeft, HiEllipsisHorizontal } from "react-icons/hi2";
-import Avatar from "./Avatar";
+import Avatar from "./Avatars/Avatar";
 import ProfileDrawer from "./ProfileDrawer";
-import AvatarGroup from "./AvatarGroup";
+import AvatarGroup from "./Avatars/AvatarGroup";
 
 function Header({
   conversation,

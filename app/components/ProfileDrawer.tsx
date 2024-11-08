@@ -15,13 +15,13 @@ import {
   DialogTrigger,
 } from "../../components/ui/dialog";
 import { IoClose, IoTrash } from "react-icons/io5";
-import Avatar from "./Avatar";
+import Avatar from "./Avatars/Avatar";
 import { Button } from "@/components/ui/button";
 import axios from "axios";
 import useConversation from "../hooks/useConversations";
 import { useRouter } from "next/navigation";
 import toast from "react-hot-toast";
-import AvatarGroup from "./AvatarGroup";
+import AvatarGroup from "./Avatars/AvatarGroup";
 
 interface ProfileDrawerProps {
   isOpen: boolean;

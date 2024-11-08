@@ -15,7 +15,7 @@ import {
 } from "@/components/ui/dropdown-menu";
 import { Button } from "@/components/ui/button";
 import Link from "next/link";
-import Avatar from "../Avatar";
+import Avatar from "../Avatars/Avatar";
 
 interface DesktopSideBarProps {
   currentUser: User;
