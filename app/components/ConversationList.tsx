@@ -16,7 +16,6 @@ const ConversationList = ({
   initialItems: ConversationType[];
   users: User[];
 }) => {
-  console.log(initialItems);
   const [items, setItems] = useState(initialItems);
   const [isModalOpen, setIsModalOpen] = useState(false);
   const router = useRouter();
