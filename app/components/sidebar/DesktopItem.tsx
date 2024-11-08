@@ -1,6 +1,8 @@
 import clsx from "clsx";
 import Link from "next/link";
 
+/* eslint-disable  @typescript-eslint/no-explicit-any */
+
 interface DesktopItemProps {
   label: string;
   icon: any;

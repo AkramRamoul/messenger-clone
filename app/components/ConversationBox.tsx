@@ -7,6 +7,7 @@ import { useSession } from "next-auth/react";
 import clsx from "clsx";
 import useChatterName from "../hooks/useChatterName";
 import Avatar from "./Avatar";
+import AvatarGroup from "./AvatarGroup";
 
 function ConversationBox({
   data,
@@ -69,9 +70,11 @@ function ConversationBox({
         selected ? "bg-neutral-100" : "bg-white"
       )}
     >
-      <div className="relative inline-block">
+      {data.isGroup ? (
+        <AvatarGroup users={data.users} />
+      ) : (
         <Avatar user={otherUser} />
-      </div>
+      )}
       <div className="min-w-0 flex-1">
         <div className="focus:outline-none">
           <span className="absolute inset-0" aria-hidden="true" />

@@ -65,13 +65,8 @@ const DesktopSideBar: React.FC<DesktopSideBarProps> = ({ currentUser }) => {
         >
           <div className="relative inline-block">
             <DropdownMenu>
-              <DropdownMenuTrigger asChild>
-                <Button
-                  variant="ghost"
-                  className="relative h-10 w-10 rounded-full"
-                >
-                  <Avatar user={currentUser} />
-                </Button>
+              <DropdownMenuTrigger>
+                <Avatar user={currentUser} />
               </DropdownMenuTrigger>
               <DropdownMenuContent className="w-56" align="end" forceMount>
                 <DropdownMenuLabel className="font-normal">
@@ -87,7 +82,7 @@ const DesktopSideBar: React.FC<DesktopSideBarProps> = ({ currentUser }) => {
                 <DropdownMenuSeparator />
                 <DropdownMenuGroup>
                   <DropdownMenuItem asChild>
-                    <Link href="/settings">Settings</Link>
+                    <Link href="/settings">Profile Settings</Link>
                   </DropdownMenuItem>
                 </DropdownMenuGroup>
               </DropdownMenuContent>

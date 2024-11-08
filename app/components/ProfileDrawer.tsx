@@ -21,6 +21,7 @@ import axios from "axios";
 import useConversation from "../hooks/useConversations";
 import { useRouter } from "next/navigation";
 import toast from "react-hot-toast";
+import AvatarGroup from "./AvatarGroup";
 
 interface ProfileDrawerProps {
   isOpen: boolean;
@@ -106,7 +107,11 @@ function ProfileDrawer({ isOpen, onClose, data }: ProfileDrawerProps) {
                     <div className="relative mt-6 flex-1 px-4 sm:px-6">
                       <div className="flex flex-col items-center">
                         <div className="mb-2">
-                          <Avatar user={otherUser} />
+                          {data.isGroup ? (
+                            <AvatarGroup users={data.users} />
+                          ) : (
+                            <Avatar user={otherUser} />
+                          )}
                         </div>
                         <div>{title}</div>
                         <div className="text-sm text-gray-500">{Status}</div>
