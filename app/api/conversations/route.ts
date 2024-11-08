@@ -1,5 +1,6 @@
 import { getCurrentUser } from "@/app/action/getCurrentUser";
 import prisma from "@/app/libs/prismadb";
+import { pusherServerClient } from "@/app/libs/pusher";
 import { NextResponse } from "next/server";
 
 export const POST = async (request: Request) => {
@@ -33,6 +34,15 @@ export const POST = async (request: Request) => {
         include: {
           users: true,
         },
+      });
+      newConversation.users.forEach((user) => {
+        if (user.email) {
+          pusherServerClient.trigger(
+            user.email,
+            "conversation:new",
+            newConversation
+          );
+        }
       });
       return NextResponse.json(newConversation);
     }
@@ -73,6 +83,15 @@ export const POST = async (request: Request) => {
       include: {
         users: true,
       },
+    });
+    newConversation.users.forEach((user) => {
+      if (user.email) {
+        pusherServerClient.trigger(
+          user.email,
+          "conversation:new",
+          newConversation
+        );
+      }
     });
     return NextResponse.json(newConversation);
   } catch (error: unknown) {

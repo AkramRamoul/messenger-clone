@@ -91,7 +91,7 @@ function ConversationBox({
           <p
             className={clsx(
               "truncate text-sm",
-              isseen ? "text-gray-500" : "text-black font-meduim"
+              isseen ? "text-gray-500" : "text-black font-bold"
             )}
           >
             {LastMessageString}

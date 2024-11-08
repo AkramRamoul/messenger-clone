@@ -1,11 +1,12 @@
 "use client";
 import React from "react";
-import { HiPhoto, HiPaperAirplane } from "react-icons/hi2";
 import useConversation from "../../hooks/useConversations";
 import { FieldValues, SubmitHandler, useForm } from "react-hook-form";
 import axios from "axios";
 import MessageInput from "../inputs/MessageInput";
 import { CldUploadWidget } from "next-cloudinary";
+import { ImageIcon } from "lucide-react";
+import { IoPaperPlane } from "react-icons/io5";
 
 function Form() {
   const { conversationId } = useConversation();
@@ -50,7 +51,7 @@ function Form() {
         {({ open }) => {
           return (
             <button onClick={() => open()}>
-              <HiPhoto size={28} className="text-sky-500" />
+              <ImageIcon size={28} className="text-sky-500" />
             </button>
           );
         }}
@@ -72,7 +73,7 @@ function Form() {
           type="submit"
           className="inline-flex items-center justify-center gap-2 whitespace-nowrap rounded-md text-sm font-medium transition-colors focus-visible:outline-none focus-visible:ring-1 focus-visible:ring-ring disabled:pointer-events-none disabled:opacity-50 [&_svg]:pointer-events-none [&_svg]:size-5 [&_svg]:shrink-0 bg-sky-500 text-primary-foreground shadow hover:bg-sky-700 h-10 w-10"
         >
-          <HiPaperAirplane height={15} width={15} />
+          <IoPaperPlane height={15} width={15} />
         </button>
       </form>
     </div>
