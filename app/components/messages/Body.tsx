@@ -1,8 +1,8 @@
 "use client";
 import React, { useEffect, useRef, useState } from "react";
-import { MessageType } from "../types";
-import useConversation from "../hooks/useConversations";
-import MessageBox from "./MessageBox";
+import { MessageType } from "../../types";
+import useConversation from "../../hooks/useConversations";
+import MessageBox from "../messages/MessageBox";
 import axios from "axios";
 
 function Body({ intialMessages }: { intialMessages: MessageType[] }) {

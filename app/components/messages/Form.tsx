@@ -1,10 +1,10 @@
 "use client";
 import React from "react";
 import { HiPhoto, HiPaperAirplane } from "react-icons/hi2";
-import useConversation from "../hooks/useConversations";
+import useConversation from "../../hooks/useConversations";
 import { FieldValues, SubmitHandler, useForm } from "react-hook-form";
 import axios from "axios";
-import MessageInput from "./inputs/MessageInput";
+import MessageInput from "../inputs/MessageInput";
 import { CldUploadWidget } from "next-cloudinary";
 
 function Form() {

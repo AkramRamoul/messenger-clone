@@ -1,13 +1,13 @@
 "use client";
 
 import { Conversation, User } from "@prisma/client";
-import useChatterName from "../hooks/useChatterName";
+import useChatterName from "../../hooks/useChatterName";
 import { useMemo, useState } from "react";
 import Link from "next/link";
 import { HiChevronLeft, HiEllipsisHorizontal } from "react-icons/hi2";
-import Avatar from "./Avatars/Avatar";
-import ProfileDrawer from "./ProfileDrawer";
-import AvatarGroup from "./Avatars/AvatarGroup";
+import Avatar from "../Avatars/Avatar";
+import ProfileDrawer from "../ProfileDrawer";
+import AvatarGroup from "../Avatars/AvatarGroup";
 
 function Header({
   conversation,

@@ -6,10 +6,10 @@ import { useRouter } from "next/navigation";
 import { FieldValues, SubmitHandler, useForm } from "react-hook-form";
 import { User } from "@prisma/client";
 
-import Input from "./inputs/Input";
-import Select from "./inputs/Select";
-import Modal from "./Modal";
-import Button from "./Button";
+import Input from "../inputs/Input";
+import Select from "../inputs/Select";
+import Modal from "../modals/Modal";
+import Button from "../Button";
 import { toast } from "react-hot-toast";
 
 interface GroupChatModalProps {

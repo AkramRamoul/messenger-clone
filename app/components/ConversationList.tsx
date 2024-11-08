@@ -6,7 +6,7 @@ import useConversations from "../hooks/useConversations";
 import clsx from "clsx";
 import { MdOutlineGroupAdd } from "react-icons/md";
 import ConversationBox from "./ConversationBox";
-import GroupChatModal from "./GroupeChatModal";
+import GroupChatModal from "./modals/GroupeChatModal";
 import { User } from "@prisma/client";
 
 const ConversationList = ({
