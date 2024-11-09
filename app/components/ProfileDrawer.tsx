@@ -181,7 +181,7 @@ function ProfileDrawer({ isOpen, onClose, data }: ProfileDrawerProps) {
                                 "
                                 >
                                   {data.users
-                                    .map((user) => user.email)
+                                    .map((user) => user.email?.split("@")[0])
                                     .join(", ")}
                                 </dd>
                               </div>
@@ -207,7 +207,7 @@ function ProfileDrawer({ isOpen, onClose, data }: ProfileDrawerProps) {
                                   sm:col-span-2
                                 "
                                 >
-                                  {otherUser.email}
+                                  {otherUser.email?.split("@")[0]}
                                 </dd>
                               </div>
                             )}

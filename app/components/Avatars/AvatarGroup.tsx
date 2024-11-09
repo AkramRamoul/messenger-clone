@@ -32,7 +32,8 @@ const AvatarGroup: React.FC<AvatarGroupProps> = ({ users = [] }) => {
           `}
         >
           <Image
-            fill
+            height={100}
+            width={100}
             src={user?.image || `https://avatar.vercel.sh/${user?.name}`}
             alt="Avatar"
           />
