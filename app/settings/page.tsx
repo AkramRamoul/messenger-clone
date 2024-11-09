@@ -1,8 +1,10 @@
 import { Card } from "@/components/ui/card";
 import { getCurrentUser } from "../action/getCurrentUser";
 import { SettingsForm } from "../components/SettingsForm";
+import { unstable_noStore as noStore } from "next/cache";
 
 export default async function SettingsPage() {
+  noStore();
   const currentUser = await getCurrentUser();
   if (!currentUser?.email || !currentUser?.id) {
     return null;
