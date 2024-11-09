@@ -44,10 +44,12 @@ export const SettingsForm = () => {
     register,
     handleSubmit,
   } = useForm<FieldValues>({
-    defaultValues: {
-      name: currentUser?.name || "",
-      image: currentUser?.image || "",
-    },
+    defaultValues: currentUser
+      ? {
+          name: currentUser.name,
+          image: currentUser.image,
+        }
+      : {},
   });
 
   const image = watch("image");
