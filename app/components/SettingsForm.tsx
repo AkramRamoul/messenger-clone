@@ -1,6 +1,7 @@
 "use client";
 export const dynamic = "force-dynamic";
 export const fetchCache = "force-no-store";
+import { unstable_noStore as noStore } from "next/cache";
 
 import {
   CardHeader,
@@ -24,6 +25,7 @@ import { Label } from "@/components/ui/label";
 import { getCurrentUser } from "../action/getCurrentUser";
 
 export const SettingsForm = () => {
+  noStore();
   const [currentUser, setCurrentUser] = useState<User | null>(null);
 
   // Fetch currentUser on component mount
