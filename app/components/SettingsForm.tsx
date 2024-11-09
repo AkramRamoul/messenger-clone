@@ -7,6 +7,7 @@ import {
   CardFooter,
 } from "@/components/ui/card";
 import Image from "next/image";
+export const dynamic = "force-dynamic";
 
 import { Button } from "@/components/ui/button";
 import Input from "./inputs/Input";
