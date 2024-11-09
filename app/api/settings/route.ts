@@ -9,8 +9,8 @@ export async function POST(request: Request) {
     const body = await request.json();
     const { name, image } = body;
 
-    if (!currentUser?.id) {
-      return new NextResponse("Unauthorized", { status: 401 });
+    if (!currentUser?.id || !currentUser?.email) {
+      return new NextResponse("UnAutherized", { status: 401 });
     }
 
     const updatedUser = await prisma.user.update({
