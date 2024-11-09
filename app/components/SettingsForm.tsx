@@ -10,7 +10,6 @@ import Image from "next/image";
 
 import { Button } from "@/components/ui/button";
 import Input from "./inputs/Input";
-import { User } from "@prisma/client";
 import { FieldValues, SubmitHandler, useForm } from "react-hook-form";
 import { useRouter } from "next/navigation";
 import { useState } from "react";
@@ -19,11 +18,12 @@ import axios from "axios";
 import { CldUploadWidget } from "next-cloudinary";
 import { Label } from "@/components/ui/label";
 
-interface SettingsFormProps {
-  currentUser: User;
+interface iAppProps {
+  name: string | null;
+  photo: string | null;
 }
 
-export const SettingsForm = ({ currentUser }: SettingsFormProps) => {
+export const SettingsForm = ({ name, photo }: iAppProps) => {
   const {
     formState: { errors },
     setValue,
@@ -32,8 +32,8 @@ export const SettingsForm = ({ currentUser }: SettingsFormProps) => {
     handleSubmit,
   } = useForm<FieldValues>({
     defaultValues: {
-      name: currentUser?.name,
-      image: currentUser?.image,
+      name: name,
+      image: photo,
     },
   });
   const image = watch("image");
@@ -92,11 +92,7 @@ export const SettingsForm = ({ currentUser }: SettingsFormProps) => {
                 height={64}
                 width={64}
                 className="rounded-full"
-                src={
-                  image ||
-                  currentUser?.image ||
-                  `https://avatar.vercel.sh/${currentUser?.name}`
-                }
+                src={image || photo || `https://avatar.vercel.sh/${name}`}
               />
               <CldUploadWidget
                 uploadPreset="d5empqg9"

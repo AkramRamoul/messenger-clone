@@ -14,7 +14,7 @@ export default async function SettingsPage() {
       className="container mx-auto sm:px-6 
         lg:px-8 lg:py-6 max-w-md h-full flex justify-center w-full flex-col"
     >
-      <SettingsForm currentUser={currentUser} />
+      <SettingsForm name={currentUser.name} photo={currentUser.image} />
     </Card>
   );
 }
