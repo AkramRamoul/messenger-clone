@@ -22,6 +22,7 @@ import useConversation from "../hooks/useConversations";
 import { useRouter } from "next/navigation";
 import toast from "react-hot-toast";
 import AvatarGroup from "./Avatars/AvatarGroup";
+import useActiveList from "../hooks/useActiveList";
 
 interface ProfileDrawerProps {
   isOpen: boolean;
@@ -40,16 +41,18 @@ function ProfileDrawer({ isOpen, onClose, data }: ProfileDrawerProps) {
   const title = useMemo(() => {
     return data.name || otherUser.name;
   }, [data.name, otherUser.name]);
-
+  const { members } = useActiveList();
+  const isActive = members.indexOf(otherUser?.email as string) !== -1;
   const Status = useMemo(() => {
     if (data.isGroup) {
       return `${data.users.length} members`;
     }
-    return "Active";
-  }, [data]);
+    return isActive ? "Active" : "Offline";
+  }, [data, isActive]);
 
   const router = useRouter();
   const { conversationId } = useConversation();
+
   const handleDelete = useCallback(() => {
     axios
       .delete(`/api/conversations/${conversationId}`)
