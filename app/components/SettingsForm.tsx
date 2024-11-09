@@ -1,8 +1,4 @@
 "use client";
-export const dynamic = "force-dynamic";
-export const fetchCache = "force-no-store";
-import { unstable_noStore as noStore } from "next/cache";
-
 import {
   CardHeader,
   CardTitle,
@@ -23,9 +19,9 @@ import axios from "axios";
 import { CldUploadWidget } from "next-cloudinary";
 import { Label } from "@/components/ui/label";
 import { getCurrentUser } from "../action/getCurrentUser";
+import LoadingModal from "./modals/LoadingModal";
 
 export const SettingsForm = () => {
-  noStore();
   const [currentUser, setCurrentUser] = useState<User | null>(null);
 
   // Fetch currentUser on component mount
@@ -84,7 +80,7 @@ export const SettingsForm = () => {
       });
   };
 
-  if (!currentUser) return <p>Loading...</p>;
+  if (!currentUser) return <LoadingModal />;
 
   return (
     <form onSubmit={handleSubmit(onSubmit)}>
