@@ -14,26 +14,16 @@ import Input from "./inputs/Input";
 import { User } from "@prisma/client";
 import { FieldValues, SubmitHandler, useForm } from "react-hook-form";
 import { useRouter } from "next/navigation";
-import { useState, useEffect } from "react";
 import toast from "react-hot-toast";
 import axios from "axios";
 import { CldUploadWidget } from "next-cloudinary";
 import { Label } from "@/components/ui/label";
-import { getCurrentUser } from "../action/getCurrentUser";
 import LoadingModal from "./modals/LoadingModal";
-
-export const SettingsForm = () => {
-  const [currentUser, setCurrentUser] = useState<User | null>(null);
-
-  // Fetch currentUser on component mount
-  useEffect(() => {
-    const fetchUser = async () => {
-      const user = await getCurrentUser();
-      setCurrentUser(user);
-    };
-    fetchUser();
-  }, []);
-
+import { useState } from "react";
+interface SettingsFormProps {
+  currentUser: User;
+}
+export const SettingsForm = ({ currentUser }: SettingsFormProps) => {
   const {
     formState: { errors },
     setValue,
