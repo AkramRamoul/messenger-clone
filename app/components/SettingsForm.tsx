@@ -1,4 +1,5 @@
 "use client";
+
 import {
   CardHeader,
   CardTitle,
@@ -10,20 +11,28 @@ import Image from "next/image";
 
 import { Button } from "@/components/ui/button";
 import Input from "./inputs/Input";
+import { User } from "@prisma/client";
 import { FieldValues, SubmitHandler, useForm } from "react-hook-form";
 import { useRouter } from "next/navigation";
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import toast from "react-hot-toast";
 import axios from "axios";
 import { CldUploadWidget } from "next-cloudinary";
 import { Label } from "@/components/ui/label";
+import { getCurrentUser } from "../action/getCurrentUser";
 
-interface iAppProps {
-  name: string | null;
-  photo: string | null;
-}
+export const SettingsForm = () => {
+  const [currentUser, setCurrentUser] = useState<User | null>(null);
 
-export const SettingsForm = ({ name, photo }: iAppProps) => {
+  // Fetch currentUser on component mount
+  useEffect(() => {
+    const fetchUser = async () => {
+      const user = await getCurrentUser();
+      setCurrentUser(user);
+    };
+    fetchUser();
+  }, []);
+
   const {
     formState: { errors },
     setValue,
@@ -32,12 +41,14 @@ export const SettingsForm = ({ name, photo }: iAppProps) => {
     handleSubmit,
   } = useForm<FieldValues>({
     defaultValues: {
-      name: name,
-      image: photo,
+      name: currentUser?.name || "",
+      image: currentUser?.image || "",
     },
   });
+
   const image = watch("image");
   /* eslint-disable  @typescript-eslint/no-explicit-any */
+
   const handleImageUpload = async (result: any) => {
     try {
       setValue("image", result.info.secure_url, { shouldValidate: true });
@@ -46,9 +57,10 @@ export const SettingsForm = ({ name, photo }: iAppProps) => {
       toast.error("Failed to upload image. Please try again.");
     }
   };
-  const [isLoading, setIsLoading] = useState(false);
 
+  const [isLoading, setIsLoading] = useState(false);
   const router = useRouter();
+
   const onSubmit: SubmitHandler<FieldValues> = (data) => {
     setIsLoading(true);
     axios
@@ -65,6 +77,9 @@ export const SettingsForm = ({ name, photo }: iAppProps) => {
         setIsLoading(false);
       });
   };
+
+  if (!currentUser) return <p>Loading...</p>;
+
   return (
     <form onSubmit={handleSubmit(onSubmit)}>
       <CardHeader className="flex flex-col gap-y-2 text-center">
@@ -82,7 +97,6 @@ export const SettingsForm = ({ name, photo }: iAppProps) => {
               register={register}
               required
             />
-
             <div className="mt-2 flex items-center flex-col gap-3">
               <Label htmlFor="image" className="mt-8">
                 Photo
@@ -92,7 +106,11 @@ export const SettingsForm = ({ name, photo }: iAppProps) => {
                 height={64}
                 width={64}
                 className="rounded-full"
-                src={image || photo || `https://avatar.vercel.sh/${name}`}
+                src={
+                  image ||
+                  currentUser.image ||
+                  `https://avatar.vercel.sh/${currentUser.name}`
+                }
               />
               <CldUploadWidget
                 uploadPreset="d5empqg9"
