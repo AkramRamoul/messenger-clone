@@ -21,24 +21,28 @@ A brief description of what this project does and who it's for
 - User profile customization and settings
 
 
+
 ## Environment Variables
 
 To run this project, you will need to add the following environment variables to your .env file
 
-DATABASE_URL=
-NEXTAUTH_SECRET=
+`DATABASE_URL=`
 
-NEXT_PUBLIC_PUSHER_APP_KEY=
-PUSHER_APP_ID=
-PUSHER_SECRET=
+`NEXTAUTH_SECRET=`
 
-NEXT_PUBLIC_CLOUDINARY_CLOUD_NAME=
+`NEXT_PUBLIC_PUSHER_APP_KEY=`
 
-GITHUB_ID=
-GITHUB_SECRET=
+`PUSHER_APP_ID=`
 
-GOOGLE_CLIENT_ID=
-GOOGLE_CLIENT_SECRET=
+`PUSHER_SECRET=`
+
+` NEXT_PUBLIC_CLOUDINARY_CLOUD_NAME=`
+
+`GITHUB_ID=`
+`GITHUB_SECRET=`
+
+`GOOGLE_CLIENT_ID=`
+`GOOGLE_CLIENT_SECRET=`
 ## Run Locally
 
 Clone the project
