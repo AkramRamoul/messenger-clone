@@ -3,6 +3,9 @@
 
 Real-Time Messenger Clone: Next.js 13, React, Tailwind, Prisma, MongoDB, NextAuth, Pusher.
 
+This project is deployed via Vercel . Check out the live demo [here](https://messenger-clone-sigma-nine.vercel.app/).
+
+
 ## Features
 
 - Real-time messaging using Pusher
